@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="C:\Users\mroop\Downloads\companylogo12.png">
+	<title>ADVITA Login</title>
+  <link rel="stylesheet" href="C:\Users\mroop\Downloads\company\css\company_login css.css">
+</head>
+<body>
+    <div id="login-form">
+        <img src="C:\Users\mroop\Downloads\companylogo12.png" alt="Company Logo">
+        <form>
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username" required><br>
+          <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password" required><br>
+          <input type="checkbox" id="myCheckbox" name="myCheckbox" aria-required="true">
+          <label for="myCheckbox">Checkme</label>
+          <input type="submit" value="Submit"><br>
+          <a href="forg_pass.html">Forgot password</a><br>
+		      <a href="create_acc.html">Create your account</a>
+        </form>
+      </div>
+      <script>
+      document.getElementById('dataForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent the form from submitting
+        
+        var formData = new FormData(this);
+    
+        // Send form data to the server using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/saveData'); // Replace '/saveData' with your server endpoint
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Data saved successfully:', xhr.responseText);
+                alert('Data saved successfully!');
+            } else {
+                console.log('Error saving data:', xhr.status);
+                alert('Error saving data. Please try again later.');
+            }
+        };
+        xhr.send(new URLSearchParams(formData).toString());
+    });
+  </script>
+</body>
+</html>

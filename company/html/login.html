@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="C:\Users\mroop\Downloads\companylogo12.png">
+    <title>Company Login</title>
+    <link rel="stylesheet" href="C:\Users\mroop\Downloads\company\css\company_login css.css">
+    
+</head>
+<body>
+    <div id="login-form">
+        <img src="C:\Users\mroop\Downloads\companylogo12.png" alt="Company Logo">
+        <form>
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username"><br>
+          <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password"><br>
+          <input type="submit" value="Submit">
+          <input type="checkbox" id="myCheckbox" name="myCheckbox">
+          <label for="myCheckbox">Check me</label>
+          <a href="forg_pass.html">Forgot password</a><br>
+		      <a href="create_acc.html">Create your account</a>
+        </form>
+      </div>
+      <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // prevent the form from submitting
+            
+            // Reset errors
+            document.getElementById('usernameError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+    
+            // Get input values
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+    
+            // Validation
+            var isValid = true;
+    
+            if (username === '') {
+                document.getElementById('usernameError').textContent = 'Username is required';
+                isValid = false;
+            }
+    
+            if (password === '') {
+                document.getElementById('passwordError').textContent = 'Password is required';
+                isValid = false;
+            }
+    
+            // If all validations pass
+            if (isValid) {
+                // Here, you can add code to send the username and password to your server for further processing
+                console.log('Username:', username);
+                console.log('Password:', password);
+                alert('Login successful!');
+                // For demonstration, I'm just showing an alert
+            }
+        });
+        function transportAndStoreData(username, password) {
+        // Assuming you have an API endpoint to send data to your server
+        // Here, I'm using JSONPlaceholder as an example
+        $.post('https://jsonplaceholder.typicode.com/posts', {
+            username: username,
+            password: password
+        }, function(response) {
+            console.log('Data transported and stored:', response);
+            alert('Login successful!'); // Alert the user
+        });
+    };
+    </script>
+</body>
+</html>
